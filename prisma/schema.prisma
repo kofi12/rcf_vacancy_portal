@@ -1,0 +1,36 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("POSTGRES_PRISMA_URL") //uses connection pooling
+  directUrl = env("POSTGRES_URL_NON_POOLING") //uses a direct connection
+}
+
+model User {
+    email   String  @unique
+    name    String
+    organization    String
+    phone   String
+}
+
+model Home {
+    name    String  @unique
+    op_name String
+    address String
+    h_phone String
+}
+
+model Tenants {
+    t_id Int @id
+    name String
+}
+
+model Waitlist {
+    w_id Int @id
+    name String
+}
